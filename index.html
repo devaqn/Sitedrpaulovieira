@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dr. Paulo Vieira — Hipnoterapeuta Avançado, Psicanalista e Especialista em Neurociência com Biofeedback. Atendimentos transformadores pela ciência da mente.">
+  <meta name="theme-color" content="#0a53a2">
+  <title>Dr. Paulo Vieira — Hipnoterapeuta Avançado | Psicanalista | Neurociência</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+
+  <!-- Tailwind CDN (Play) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            azul:    '#0a53a2',
+            dourado: '#fdc62b',
+            profundo:'#041f45',
+          }
+        }
+      },
+      corePlugins: { preflight: false }  /* não reset nosso CSS */
+    }
+  </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Barra de progresso do scroll -->
+  <style>
+    #scrollBar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #fdc62b, #f59e0b);
+      z-index: 9998;
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="is-loading">
+
+  <!-- Barra de progresso do scroll -->
+  <div id="scrollBar" role="progressbar" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════
+       LOADER
+  ══════════════════════════════════════ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <img src="assets/logo-amarelo.svg" alt="Dr. Paulo Vieira" class="loader-logo" width="220" loading="eager">
+      <div class="loader-track">
+        <div class="loader-fill" id="loaderFill"></div>
+      </div>
+      <p class="loader-texto">Carregando...</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════ -->
+  <nav id="navbar" role="navigation" aria-label="Navegação principal">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="#inicio" class="nav-logo" aria-label="Dr. Paulo Vieira — página inicial">
+        <img src="assets/logo-amarelo.svg" alt="Dr. Paulo Vieira" class="nav-logo-img nav-logo-dark" height="48">
+        <img src="assets/logo-azul.svg"    alt="Dr. Paulo Vieira" class="nav-logo-img nav-logo-light" height="48">
+      </a>
+
+      <!-- Links desktop -->
+      <ul class="nav-links" role="list">
+        <li><a href="#sobre"         class="nav-link">Sobre</a></li>
+        <li><a href="#especialidades" class="nav-link">Especialidades</a></li>
+        <li><a href="#metodologia"   class="nav-link">Metodologia</a></li>
+        <li><a href="#depoimentos"   class="nav-link">Depoimentos</a></li>
+        <li><a href="#contato"       class="nav-link">Contato</a></li>
+      </ul>
+
+      <!-- CTA desktop -->
+      <a href="https://wa.me/5581991495849?text=Olá%20Dr.%20Paulo%2C%20gostaria%20de%20agendar%20uma%20consulta"
+         class="btn btn-cta nav-cta"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Agendar consulta via WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i> Agendar Consulta
+      </a>
+
+      <!-- Hambúrguer -->
+      <button class="hamburger" id="hamburger"
+              aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       DRAWER MOBILE
+  ══════════════════════════════════════ -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu">
+    <button class="drawer-close" id="drawerClose" aria-label="Fechar menu">
+      <i class="fas fa-times" aria-hidden="true"></i>
+    </button>
+    <div class="drawer-logo">
+      <img src="assets/logo-amarelo.svg" alt="Dr. Paulo Vieira" height="48">
+    </div>
+    <nav class="drawer-nav">
+      <a href="#sobre"          class="drawer-link">Sobre</a>
+      <a href="#especialidades" class="drawer-link">Especialidades</a>
+      <a href="#metodologia"    class="drawer-link">Metodologia</a>
+      <a href="#depoimentos"    class="drawer-link">Depoimentos</a>
+      <a href="#contato"        class="drawer-link">Contato</a>
+    </nav>
+    <a href="https://wa.me/5581991495849?text=Olá%20Dr.%20Paulo%2C%20gostaria%20de%20agendar%20uma%20consulta"
+       class="btn btn-cta drawer-cta"
+       target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-whatsapp" aria-hidden="true"></i> Agendar Consulta
+    </a>
+  </aside>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section id="inicio" class="hero" aria-label="Apresentação">
+
+    <!-- Vídeo de fundo -->
+    <video id="heroVideo" class="hero-video"
+           autoplay muted loop playsinline
+           poster="assets/cerebro.jpg"
+           aria-hidden="true">
+      <source src="assets/hero-video.mp4" type="video/mp4">
+    </video>
+
+    <!-- Fundo decorativo (sobre o vídeo) -->
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+      <div class="hero-grid-lines"></div>
+    </div>
+
+    <div class="hero-inner">
+      <!-- Emblema central -->
+      <div class="hero-emblem-wrap" data-animate="zoom-in">
+        <img src="assets/logo-amarelo.svg" alt="Dr. Paulo Vieira" class="hero-logo" loading="eager">
+      </div>
+
+      <!-- Texto hero -->
+      <div class="hero-content" data-animate="fade-up">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Atendimento Humanizado &nbsp;·&nbsp; Resultados Reais
+        </div>
+        <h1 class="hero-titulo">
+          Sua mente merece<br>
+          <em>ser verdadeiramente ouvida</em>
+        </h1>
+        <p class="hero-sub">
+          Hipnoterapia &nbsp;·&nbsp; Psicanálise &nbsp;·&nbsp; Neurociência com Biofeedback
+        </p>
+        <div class="hero-ctas">
+          <a href="https://wa.me/5581991495849?text=Olá%20Dr.%20Paulo%2C%20quero%20agendar%20uma%20conversa"
+             class="btn btn-cta btn-lg"
+             target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> Quero Conversar
+          </a>
+          <a href="#sobre" class="btn btn-ghost btn-lg">
+            Conheça Minha História <i class="fas fa-arrow-down" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <a href="#sobre" class="hero-scroll-cue" aria-label="Ir para sobre">
+      <i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </a>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       TRUST BAR
+  ══════════════════════════════════════ -->
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-list">
+        <div class="trust-item" data-animate="fade-up" data-delay="0">
+          <i class="fas fa-certificate" aria-hidden="true"></i>
+          <span>+15 anos de prática clínica</span>
+        </div>
+        <div class="trust-sep" aria-hidden="true"></div>
+        <div class="trust-item" data-animate="fade-up" data-delay="80">
+          <i class="fas fa-brain" aria-hidden="true"></i>
+          <span>Neurociência com Biofeedback</span>
+        </div>
+        <div class="trust-sep" aria-hidden="true"></div>
+        <div class="trust-item" data-animate="fade-up" data-delay="160">
+          <i class="fas fa-couch" aria-hidden="true"></i>
+          <span>Hipnoterapeuta e Psicanalista</span>
+        </div>
+        <div class="trust-sep" aria-hidden="true"></div>
+        <div class="trust-item" data-animate="fade-up" data-delay="240">
+          <i class="fas fa-lock" aria-hidden="true"></i>
+          <span>Sigilo absoluto em cada sessão</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SOBRE
+  ══════════════════════════════════════ -->
+  <section id="sobre" class="secao sobre" aria-labelledby="sobre-h2">
+    <div class="container">
+      <div class="sobre-grid">
+
+        <!-- Foto -->
+        <div class="sobre-foto-col" data-animate="fade-right">
+          <div class="sobre-foto-wrap">
+            <img src="assets/foto-paulo.png"
+                 alt="Dr. Paulo Vieira"
+                 class="sobre-foto"
+                 width="440" height="540"
+                 loading="lazy">
+            <!-- Card flutuante -->
+            <div class="sobre-float-card">
+              <div class="sobre-float-icon">
+                <i class="fas fa-star" aria-hidden="true"></i>
+              </div>
+              <div>
+                <strong>+15 anos</strong>
+                <span>de experiência clínica</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Texto -->
+        <div class="sobre-texto" data-animate="fade-left">
+          <span class="secao-label">Quem é o Dr. Paulo Vieira</span>
+          <h2 id="sobre-h2" class="secao-titulo">
+            Cada pessoa que atendo<br>
+            <em>me ensina algo novo</em>
+          </h2>
+
+          <p class="sobre-p">
+            Ao longo de mais de 15 anos dedicados à saúde da mente, aprendi que nenhuma história se repete — e que cada pessoa merece um olhar genuíno, não uma fórmula pronta. Por isso construí uma prática que une Psicanálise, Hipnoterapia Avançada e Neurociência com Biofeedback: não como técnicas separadas, mas como linguagens que conversam entre si, ao seu favor.
+          </p>
+          <p class="sobre-p">
+            Meu compromisso é simples: criar um espaço onde você possa se sentir seguro para se abrir, crescer e descobrir os recursos que já existem dentro de você. Não acredito em cura imposta de fora para dentro — acredito em transformação que nasce de dentro para fora.
+          </p>
+
+          <!-- Credenciais -->
+          <div class="sobre-credenciais">
+            <div class="credencial">
+              <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+              <span>Hipnoterapeuta Avançado</span>
+            </div>
+            <div class="credencial">
+              <i class="fas fa-couch" aria-hidden="true"></i>
+              <span>Psicanalista</span>
+            </div>
+            <div class="credencial">
+              <i class="fas fa-brain" aria-hidden="true"></i>
+              <span>Neurociência com Biofeedback</span>
+            </div>
+            <div class="credencial">
+              <i class="fas fa-user-doctor" aria-hidden="true"></i>
+              <!-- ✏️ EDITE — área do doutorado -->
+              <span>Doutor em [Área]</span>
+            </div>
+          </div>
+
+          <a href="#contato" class="btn btn-primary btn-md">
+            Vamos Conversar <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ESPECIALIDADES
+  ══════════════════════════════════════ -->
+  <section id="especialidades" class="secao secao-alt especialidades" aria-labelledby="esp-h2">
+    <div class="container">
+      <div class="secao-header" data-animate="fade-up">
+        <span class="secao-label">Como Posso Ajudar</span>
+        <h2 id="esp-h2" class="secao-titulo">Minhas Especialidades</h2>
+        <p class="secao-desc">
+          Escolhi cada uma dessas abordagens porque, juntas, elas cuidam do ser humano por inteiro —
+          mente, emoção e comportamento. Não uso técnicas isoladas: uso o que faz sentido para você.
+        </p>
+      </div>
+
+      <div class="esp-grid">
+
+        <!-- Card 1 — Hipnoterapia -->
+        <article class="esp-card" data-animate="fade-up" data-delay="0">
+          <div class="esp-icone-wrap">
+            <i class="fas fa-circle-notch" aria-hidden="true"></i>
+          </div>
+          <h3 class="esp-nome">Hipnoterapia Avançada</h3>
+          <p class="esp-desc">
+            A hipnoterapia me fascina porque alcança onde a conversa comum não chega: o subconsciente. Ali estão os padrões que nos travam — e também as chaves para transformá-los de vez.
+          </p>
+          <ul class="esp-lista" aria-label="Indicações">
+            <li><i class="fas fa-check" aria-hidden="true"></i> Fobias e medos profundos</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Ansiedade e estresse crônico</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Traumas emocionais</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Vícios e padrões sabotadores</li>
+          </ul>
+          <a href="#contato" class="esp-cta">
+            Quero saber mais <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+
+        <!-- Card 2 — Psicanálise (destaque) -->
+        <article class="esp-card esp-card--dest" data-animate="fade-up" data-delay="150">
+          <div class="esp-dest-badge">Mais Procurado</div>
+          <div class="esp-icone-wrap">
+            <i class="fas fa-couch" aria-hidden="true"></i>
+          </div>
+          <h3 class="esp-nome">Psicanálise</h3>
+          <p class="esp-desc">
+            A psicanálise é para quem tem coragem de se olhar com honestidade. É um espaço de escuta genuína onde o que ficou guardado por anos pode, finalmente, encontrar voz — e lugar.
+          </p>
+          <ul class="esp-lista" aria-label="Indicações">
+            <li><i class="fas fa-check" aria-hidden="true"></i> Autoconhecimento real</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Conflitos internos não resolvidos</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Dificuldades nos relacionamentos</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Desenvolvimento pessoal profundo</li>
+          </ul>
+          <a href="#contato" class="esp-cta">
+            Quero saber mais <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+
+        <!-- Card 3 — Biofeedback -->
+        <article class="esp-card" data-animate="fade-up" data-delay="300">
+          <div class="esp-icone-wrap">
+            <i class="fas fa-brain" aria-hidden="true"></i>
+          </div>
+          <h3 class="esp-nome">Neurociência com Biofeedback</h3>
+          <p class="esp-desc">
+            Ver em tempo real o que acontece no cérebro durante o estresse foi uma das maiores revelações da minha prática. Isso muda tudo: o paciente não ouve sobre sua condição — ele a vê e aprende a regulá-la.
+          </p>
+          <ul class="esp-lista" aria-label="Indicações">
+            <li><i class="fas fa-check" aria-hidden="true"></i> Foco e clareza mental</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Regulação emocional</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Estresse crônico e burnout</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Alta performance cognitiva</li>
+          </ul>
+          <a href="#contato" class="esp-cta">
+            Quero saber mais <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       NÚMEROS
+  ══════════════════════════════════════ -->
+  <section class="numeros" aria-label="Números e estatísticas">
+    <div class="container">
+      <div class="numeros-grid">
+        <div class="num-item" data-animate="fade-up" data-delay="0">
+          <span class="num-valor" data-count="15">0</span><span class="num-sufixo">+</span>
+          <span class="num-label">Anos de Experiência</span>
+        </div>
+        <div class="num-sep" aria-hidden="true"></div>
+        <div class="num-item" data-animate="fade-up" data-delay="100">
+          <span class="num-valor" data-count="500">0</span><span class="num-sufixo">+</span>
+          <span class="num-label">Pacientes Atendidos</span>
+        </div>
+        <div class="num-sep" aria-hidden="true"></div>
+        <div class="num-item" data-animate="fade-up" data-delay="200">
+          <span class="num-valor" data-count="3">0</span>
+          <span class="num-label">Especialidades Integradas</span>
+        </div>
+        <div class="num-sep" aria-hidden="true"></div>
+        <div class="num-item" data-animate="fade-up" data-delay="300">
+          <span class="num-valor" data-count="98">0</span><span class="num-sufixo">%</span>
+          <span class="num-label">Taxa de Satisfação</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       METODOLOGIA
+  ══════════════════════════════════════ -->
+  <section id="metodologia" class="secao metodologia" aria-labelledby="met-h2">
+    <div class="container">
+      <div class="secao-header" data-animate="fade-up">
+        <span class="secao-label">Como Eu Trabalho</span>
+        <h2 id="met-h2" class="secao-titulo">Com estrutura, mas sem rigidez.<br><em>Com ciência, mas com alma.</em></h2>
+        <p class="secao-desc">
+          Cada atendimento segue um caminho pensado especialmente para você — porque acredito que o processo terapêutico precisa respeitar o seu ritmo, não o contrário.
+        </p>
+      </div>
+
+      <div class="met-lista">
+
+        <div class="met-step" data-animate="fade-up" data-delay="0">
+          <div class="met-num" aria-hidden="true">01</div>
+          <div class="met-linha" aria-hidden="true"></div>
+          <div class="met-conteudo">
+            <h3>Nosso Primeiro Encontro</h3>
+            <p>Começa com você falando — e eu ouvindo de verdade. Quero entender sua história, o que te traz até aqui e onde você deseja chegar. Sem julgamentos, sem pressa.</p>
+          </div>
+        </div>
+
+        <div class="met-step" data-animate="fade-up" data-delay="100">
+          <div class="met-num" aria-hidden="true">02</div>
+          <div class="met-linha" aria-hidden="true"></div>
+          <div class="met-conteudo">
+            <h3>Seu Protocolo Exclusivo</h3>
+            <p>A partir do que você me conta, desenho um caminho só seu. Nada de receitas prontas: combino as técnicas que fazem mais sentido para o seu momento, perfil e objetivos.</p>
+          </div>
+        </div>
+
+        <div class="met-step" data-animate="fade-up" data-delay="200">
+          <div class="met-num" aria-hidden="true">03</div>
+          <div class="met-linha" aria-hidden="true"></div>
+          <div class="met-conteudo">
+            <h3>Trabalhamos Juntos</h3>
+            <p>Em cada sessão, aplico o que é mais indicado para o seu momento — sempre num ambiente seguro, acolhedor e absolutamente sigiloso. Você não está sozinho nesse processo.</p>
+          </div>
+        </div>
+
+        <div class="met-step met-step--ultimo" data-animate="fade-up" data-delay="300">
+          <div class="met-num" aria-hidden="true">04</div>
+          <div class="met-linha" aria-hidden="true"></div>
+          <div class="met-conteudo">
+            <h3>Estou Aqui Entre as Sessões</h3>
+            <p>Minha presença não termina quando você sai do consultório. Acompanho sua evolução, ajusto o protocolo quando necessário e estou disponível para o que precisar entre um encontro e outro.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       BANNER CÉREBRO
+  ══════════════════════════════════════ -->
+  <div class="cerebro-banner" aria-hidden="true">
+    <img src="assets/cerebro.jpg" alt="" class="cerebro-img" loading="lazy">
+    <div class="cerebro-overlay"></div>
+    <div class="cerebro-texto" data-animate="fade-up">
+      <h2>A mente não mente —<br><em>ela apenas espera ser ouvida</em></h2>
+      <p>É o que aprendo, todo dia, com cada pessoa que me procura</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DEPOIMENTOS
+  ══════════════════════════════════════ -->
+  <section id="depoimentos" class="secao secao-alt depoimentos" aria-labelledby="dep-h2">
+    <div class="container">
+      <div class="secao-header" data-animate="fade-up">
+        <span class="secao-label">O Que Dizem</span>
+        <h2 id="dep-h2" class="secao-titulo">Depoimentos</h2>
+      </div>
+
+      <div class="dep-grid">
+
+        <article class="dep-card" data-animate="fade-up" data-delay="0">
+          <div class="dep-stars" aria-label="5 estrelas">
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+          </div>
+          <!-- ✏️ EDITE -->
+          <blockquote class="dep-texto">
+            "O acompanhamento com o Dr. Paulo foi transformador. Em poucas sessões, consegui superar fobias que me acompanhavam há anos. A combinação de hipnoterapia com psicanálise é simplesmente poderosa."
+          </blockquote>
+          <footer class="dep-autor">
+            <div class="dep-avatar" aria-hidden="true">M</div>
+            <div>
+              <strong>M. S.</strong>
+              <!-- ✏️ EDITE -->
+              <span>Empresária, Recife/PE</span>
+            </div>
+          </footer>
+        </article>
+
+        <article class="dep-card" data-animate="fade-up" data-delay="150">
+          <div class="dep-stars" aria-label="5 estrelas">
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+          </div>
+          <!-- ✏️ EDITE -->
+          <blockquote class="dep-texto">
+            "O biofeedback mudou completamente minha relação com o estresse. Hoje tenho ferramentas reais para regular minhas emoções. O Dr. Paulo tem um dom para escutar e direcionar."
+          </blockquote>
+          <footer class="dep-autor">
+            <div class="dep-avatar" aria-hidden="true">R</div>
+            <div>
+              <strong>R. A.</strong>
+              <!-- ✏️ EDITE -->
+              <span>Médico, João Pessoa/PB</span>
+            </div>
+          </footer>
+        </article>
+
+        <article class="dep-card" data-animate="fade-up" data-delay="300">
+          <div class="dep-stars" aria-label="5 estrelas">
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <i class="fas fa-star" aria-hidden="true"></i>
+          </div>
+          <!-- ✏️ EDITE -->
+          <blockquote class="dep-texto">
+            "Iniciei a análise sem saber muito o que esperar e encontrei um espaço de escuta genuína e acolhimento. A jornada de autoconhecimento com o Dr. Paulo é única e profunda."
+          </blockquote>
+          <footer class="dep-autor">
+            <div class="dep-avatar" aria-hidden="true">C</div>
+            <div>
+              <strong>C. B.</strong>
+              <!-- ✏️ EDITE -->
+              <span>Professora, Recife/PE</span>
+            </div>
+          </footer>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CTA BANNER
+  ══════════════════════════════════════ -->
+  <section class="cta-banner" aria-label="Chamada para ação">
+    <div class="cta-banner-bg" aria-hidden="true">
+      <div class="cta-orb cta-orb-1"></div>
+      <div class="cta-orb cta-orb-2"></div>
+    </div>
+    <div class="container">
+      <div class="cta-banner-inner" data-animate="fade-up">
+        <h2 class="cta-banner-titulo">
+          O primeiro passo<br>
+          <em>começa com uma conversa</em>
+        </h2>
+        <p class="cta-banner-sub">
+          Não precisa ter tudo resolvido antes de me procurar. Às vezes, só precisamos de um espaço seguro para começar — e é exatamente isso que ofereço.
+        </p>
+        <a href="https://wa.me/5581991495849?text=Olá%20Dr.%20Paulo%2C%20quero%20dar%20o%20primeiro%20passo"
+           class="btn btn-cta btn-xl"
+           target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i> Falar com o Dr. Paulo
+        </a>
+        <p class="cta-banner-nota">
+          <i class="fas fa-lock" aria-hidden="true"></i>
+          Sigilo absoluto em cada sessão &nbsp;·&nbsp; Presencial e online
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CONTATO
+  ══════════════════════════════════════ -->
+  <section id="contato" class="secao contato" aria-labelledby="cont-h2">
+    <div class="container">
+      <div class="secao-header" data-animate="fade-up">
+        <span class="secao-label">Fale Comigo</span>
+        <h2 id="cont-h2" class="secao-titulo">Me conta o que você está buscando</h2>
+        <p class="secao-desc">
+          Seja para tirar uma dúvida, entender melhor meu trabalho ou dar o primeiro passo — estou aqui e ficaria feliz em te ouvir.
+        </p>
+      </div>
+
+      <div class="cont-grid">
+
+        <!-- Info -->
+        <div class="cont-info" data-animate="fade-right">
+
+          <a href="https://wa.me/5581991495849?text=Ol%C3%A1%2C%20Paulo!%20Tudo%20bem%3F%0AVim%20pelo%20seu%20contato%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20seu%20trabalho%0AAguardo%20seu%20retorno.%20Obrigado(a)" class="cont-card cont-card--link"
+             target="_blank" rel="noopener noreferrer">
+            <div class="cont-icone cont-icone--wpp">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            </div>
+            <div>
+              <strong>WhatsApp</strong>
+              <!-- ✏️ EDITE -->
+              <span>(81) 99149-5849</span>
+            </div>
+            <i class="fas fa-arrow-right cont-arrow" aria-hidden="true"></i>
+          </a>
+
+          <a href="mailto:contato@drpaulovieira.com.br" class="cont-card cont-card--link">
+            <div class="cont-icone">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+            </div>
+            <div>
+              <strong>E-mail</strong>
+              <!-- ✏️ EDITE -->
+              <span>seilateuemail.@gmail.com</span>
+            </div>
+            <i class="fas fa-arrow-right cont-arrow" aria-hidden="true"></i>
+          </a>
+
+          <div class="cont-card">
+            <div class="cont-icone">
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            </div>
+            <div>
+              <strong>Localização</strong>
+              <!-- ✏️ EDITE -->
+              <span>Recife, PE — Atendimento também online</span>
+            </div>
+          </div>
+
+          <div class="cont-card">
+            <div class="cont-icone">
+              <i class="fas fa-clock" aria-hidden="true"></i>
+            </div>
+            <div>
+              <strong>Horários</strong>
+              <!-- ✏️ EDITE -->
+              <span>Seg–Sex: 8h às 18h &nbsp;|&nbsp; Sáb: 8h às 12h</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Formulário -->
+        <div class="cont-form-col" data-animate="fade-left">
+          <form class="cont-form" id="contForm" novalidate>
+
+            <div class="campo">
+              <label for="nome">Nome completo <span aria-hidden="true">*</span></label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome completo"
+                     required autocomplete="name">
+              <span class="campo-erro" aria-live="polite"></span>
+            </div>
+
+            <div class="campo">
+              <label for="telefone">Telefone / WhatsApp</label>
+              <input type="tel" id="telefone" name="telefone"
+                     placeholder="(XX) 9XXXX-XXXX" autocomplete="tel">
+            </div>
+
+            <div class="campo">
+              <label for="email">E-mail <span aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email"
+                     placeholder="seu@email.com" required autocomplete="email">
+              <span class="campo-erro" aria-live="polite"></span>
+            </div>
+
+            <div class="campo">
+              <label for="servico">Especialidade de interesse</label>
+              <select id="servico" name="servico">
+                <option value="">Selecione uma opção</option>
+                <option value="hipnoterapia">Hipnoterapia Avançada</option>
+                <option value="psicanalise">Psicanálise</option>
+                <option value="biofeedback">Neurociência com Biofeedback</option>
+                <option value="avaliacao">Consulta de Avaliação</option>
+              </select>
+            </div>
+
+            <div class="campo">
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" rows="4"
+                        placeholder="Pode falar à vontade — lerei com atenção e responderei pessoalmente."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-cta btn-full">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i> Enviar Mensagem
+            </button>
+
+            <p class="form-nota">
+              <i class="fas fa-shield-halved" aria-hidden="true"></i>
+              Tudo que você compartilha comigo fica entre nós. Sempre.
+            </p>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Marca -->
+        <div class="footer-marca">
+          <img src="assets/logo-amarelo.svg" alt="Dr. Paulo Vieira"
+               class="footer-logo" height="54" loading="lazy">
+          <p class="footer-tagline">
+            Cada mente é um universo. Meu trabalho é ajudá-la a brilhar — com ciência, ética e muita humanidade.
+          </p>
+          <div class="footer-redes">
+            <!-- ✏️ EDITE — links das redes sociais -->
+            <a href="https://www.instagram.com/paulovieirahipnose" class="footer-rede" aria-label="Instagram" rel="noopener noreferrer">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="https://wa.me/5581991495849?text=Ol%C3%A1%2C%20Paulo!%20Tudo%20bem%3F%0AVim%20pelo%20seu%20contato%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20seu%20trabalho%0AAguardo%20seu%20retorno.%20Obrigado(a)" class="footer-rede" aria-label="WhatsApp" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Nav -->
+        <div class="footer-col">
+          <h4 class="footer-col-titulo">Navegação</h4>
+          <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#especialidades">Especialidades</a></li>
+            <li><a href="#metodologia">Metodologia</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+
+        <!-- Especialidades -->
+        <div class="footer-col">
+          <h4 class="footer-col-titulo">Especialidades</h4>
+          <ul>
+            <li><a href="#especialidades">Hipnoterapia Avançada</a></li>
+            <li><a href="#especialidades">Psicanálise</a></li>
+            <li><a href="#especialidades">Neurociência com Biofeedback</a></li>
+          </ul>
+        </div>
+
+        <!-- Contato -->
+        <div class="footer-col footer-col--contato">
+          <h4 class="footer-col-titulo">Contato</h4>
+          <!-- ✏️ EDITE -->
+          <p><i class="fab fa-whatsapp" aria-hidden="true"></i> (81) 99149-5849</p>
+          <p><i class="fas fa-envelope" aria-hidden="true"></i> seilateuemail.@gmail.com</p>
+          <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Recife, PE</p>
+          <a href="https://wa.me/5581991495849?text=Ol%C3%A1%2C%20Paulo!%20Tudo%20bem%3F%0AVim%20pelo%20seu%20contato%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20seu%20trabalho%0AAguardo%20seu%20retorno.%20Obrigado(a)"
+             class="btn btn-cta btn-sm footer-cta"
+             target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> Agendar Consulta
+          </a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="anoAtual"></span> Dr. Paulo Vieira. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botão WhatsApp flutuante -->
+  <a href="https://wa.me/5581991495849?text=Ol%C3%A1%2C%20Paulo!%20Tudo%20bem%3F%0AVim%20pelo%20seu%20contato%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20seu%20trabalho%0AAguardo%20seu%20retorno.%20Obrigado(a)"
+     class="wpp-float"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Conversar pelo WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+    <span class="wpp-tooltip">Fale Conosco</span>
+  </a>
+
+  <script src="main.js"></script>
+</body>
+</html>
