@@ -1626,6 +1626,44 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .cerebro-texto p { font-size: 0.78rem; }
 }
 
+/* ── Scroll targets: compensa a navbar fixa ─────────────────── */
+section[id] { scroll-margin-top: var(--nav-h); }
+
+/* ── Performance hints ──────────────────────────────────────── */
+.hero-logo          { will-change: transform; }
+.wpp-float          { will-change: transform; }
+.cursor-dot,
+.cursor-ring        { will-change: left, top; }
+[data-animate]      { will-change: opacity, transform; }
+[data-animate].is-visible { will-change: auto; }
+
+/* ── Spinner no botão de envio ──────────────────────────────── */
+@keyframes fa-spin-custom { to { transform: rotate(360deg); } }
+.fa-spin { animation: fa-spin-custom 0.75s linear infinite; }
+
+/* ── Campo com erro: mensagem visível ───────────────────────── */
+.campo-erro:not(:empty) {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #e53e3e;
+  font-size: 0.75rem;
+  margin-top: 0.1rem;
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+/* ── Mobile: garante que o trust-bar caiba bem ──────────────── */
+@media (max-width: 480px) {
+  .trust-list { gap: 0.65rem; }
+  .trust-item { font-size: 0.77rem; }
+  .hero-badge { font-size: 0.72rem; padding: 0.3rem 0.75rem; }
+  .met-step { grid-template-columns: 36px 12px 1fr; gap: 0 0.6rem; }
+  .met-num  { font-size: 1.6rem; }
+  .cont-grid { gap: 1.5rem; }
+  .esp-card { padding: 1.35rem 1.1rem; }
+}
+
 /* Acessibilidade — reduz movimento */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
